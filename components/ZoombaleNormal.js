@@ -6,7 +6,7 @@ import { responsiveWidth } from 'react-native-responsive-dimensions';
 const ZoomableNormal = ({ ChildCon,iszoomable,widthPersentage}) => {
   // states
   // should change the value of the size=child container width and height
-  const sizew=(responsiveWidth(widthPersentage)) ; //main container size 
+  const sizew=(574) ; //main container size 
   const sizeh=(responsiveWidth(widthPersentage))*1.3 ; 
   const pinchManualActivation = useSharedValue(0);
   const contextScale = useSharedValue({ scale: 1 });
@@ -131,7 +131,7 @@ const ZoomableNormal = ({ ChildCon,iszoomable,widthPersentage}) => {
 
   return (
     <Animated.View layout={Layout.duration(300)} style={[styles.mainConatainer,{width: sizew,
-      height: sizew*1.3,}]}>
+      height: sizew*1.3}]}>
       <GestureDetector gesture={composed}>
         <Animated.View
           style={[

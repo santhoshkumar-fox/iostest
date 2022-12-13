@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Box, ScrollView, Text, Heading, HStack, VStack } from "native-base";
 import { View, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Header, LineChartcard, MiniCard } from "../components";
+import { Header, LineChartcard, MiniCard, NoticeCrad, PatientVistCard } from "../components";
 import { dumyData } from "../constants";
 import { responsiveWidth } from "react-native-responsive-dimensions";
 import { COLORS } from './../constants/theme';
@@ -42,11 +42,11 @@ const Dashboard = () => {
     <View style={styles.root}>
       <Header />
       <Box flex={1} p={4}>
-        <Box backgroundColor={"white"} mb={4} p={4} pt={2} pb={2} borderRadius={5} shadow={2} >       
+        <Box backgroundColor={"white"} mb={4} mt={1} p={4} pt={2} pb={2} borderRadius={5} shadow={2} >       
          <Heading size={"md"} mb={2} color={"lightBlue.800"}>
           Welcome, Dr. John Doe
         </Heading>
-        <HStack alignItems={"center"} mb={4}>
+        <HStack alignItems={"center"} mt={2} mb={2}>
           <Box flex={1} flexDirection={"row"} alignItems={"center"}>
             <Box flexDirection={"row"}>
               <Ionicons name={"ios-calendar-outline"} color="#444" size={17} />
@@ -70,13 +70,13 @@ const Dashboard = () => {
         </HStack>
         </Box>
 
-        <HStack pb={4} space={4} justifyContent="center" shadow={2}>
+        <HStack pb={4} space={4} justifyContent="center" shadow={2} style={{overflow:"hidden"}}>
           <LineChartcard
             data={dumyData.chartData}
             width={responsiveWidth(45)}
           />
-          <VStack space={4} justifyContent="center" flex={1.5}>
-            <MiniCard
+          <VStack space={4} justifyContent="center" flex={1.5} >
+            {/* <MiniCard
               iconName={"ios-people-outline"}
               bgIconName={"ios-pulse-outline"}
               title={"patients Registered"}
@@ -87,13 +87,14 @@ const Dashboard = () => {
               bgIconName={"ios-time-outline"}
               title={"Waiting for Doctor"}
               count={125}
-            />
+            /> */}
+            <PatientVistCard/>
           </VStack>
         </HStack>
-        <Heading size={"sm"} mb={2}>
+        <Heading size={"sm"} mb={2} ml={1} style={{fontSize:15,fontWeight:"600",color:"#2b2b2b"}}>
           Your Next Patients
         </Heading>
-        <Box rounded={"md"}  flex={1} borderRadius={5} shadow={2}>
+        <Box rounded={"md"}  flex={1} borderRadius={5} shadow={3}>
           <VStack>
             <Box style={styles.tableHead}>
               {dumyData.tableData.head.map((d, i) => (
@@ -133,11 +134,9 @@ const Dashboard = () => {
            </ScrollView>
           </VStack>
         </Box>
-        <View style={styles.agendaCantainer}>
-          <Heading size={"sm"} mb={2}></Heading>
-          {/* <AgendaCalendar/> */}
-        </View>
+       <NoticeCrad/>
       </Box>
+     
     </View>
   );
 };
@@ -170,8 +169,12 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   agendaCantainer: {
+    height:100,
     marginVertical: 20,
-    overflow: "hidden",
+    backgroundColor:"white",
+    borderRadius:10,
+
+    
   },
 });
 

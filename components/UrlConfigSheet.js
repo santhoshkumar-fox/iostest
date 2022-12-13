@@ -4,6 +4,7 @@ import {images, SIZE} from "../constants"
 import Animated,{SlideInDown,FadeIn,FadeOut} from "react-native-reanimated"
 import {Box,KeyboardAvoidingView,Stack,InputGroup,InputRightAddon, InputLeftAddon,Text,Heading,Input,FormControl,Button,} from "native-base";
 import { MaterialIcons } from '@expo/vector-icons';
+import PatientVistCard from "./PatientVistCard";
 
 const UrlConfigSheet = ({isLocal,setIsLocal}) => {
    const [serverKey,setServerKey] = useState(null);
@@ -22,6 +23,7 @@ const UrlConfigSheet = ({isLocal,setIsLocal}) => {
 
 
   return(
+    // <PatientVistCard/>
     <Animated.View entering={SlideInDown.duration(400)} style={styles.mainContainer}>
      <View style={{width:"100%",alignItems:"center"}}>
      <View style={{width:300,height:90}}>
@@ -77,7 +79,7 @@ const UrlConfigSheet = ({isLocal,setIsLocal}) => {
       setIsLocal(false);
     }}
     >
-    <MaterialIcons name="cancel" size={18} color="grey" />
+    <MaterialIcons name="cancel" size={30} style={{opacity:.7}} color="grey" />
     </TouchableOpacity>
     </Animated.View>
   )

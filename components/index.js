@@ -15,6 +15,8 @@ import SideBar from './SideBar';
 import SideBarRight from './SidebarRight';
 import ClinicDropDown from './ClinicDropDown';
 import UrlConfigSheet from './UrlConfigSheet';
+import PatientVistCard from './PatientVistCard';
+import NoticeCrad from './NoticeCrad';
 
 
 
@@ -35,6 +37,8 @@ export {
   SideBar,
   SideBarRight,
   ClinicDropDown,
-  UrlConfigSheet
+  UrlConfigSheet,
+  PatientVistCard,
+  NoticeCrad,
   
 };

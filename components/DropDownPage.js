@@ -1,3 +1,4 @@
+import { Box } from 'native-base';
 import React, { useState } from 'react';
   import { StyleSheet } from 'react-native';
   import { Dropdown } from 'react-native-element-dropdown';
@@ -15,7 +16,8 @@ import React, { useState } from 'react';
 
   const DropDownPage = ({value,setValue}) => {
     return (
-      <Dropdown
+     <Box shadow={2}>
+       <Dropdown
         style={styles.dropdown}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
@@ -38,6 +40,7 @@ import React, { useState } from 'react';
         // )}
         containerStyle={styles.containerStyle}
       />
+     </Box>
     );
   };
 
@@ -46,7 +49,7 @@ import React, { useState } from 'react';
     dropdown: {
       margin: 20,
       height: 40,
-      width:300,
+      width:330,
       backgroundColor:"white",
       borderRadius:5,
       paddingHorizontal:10,

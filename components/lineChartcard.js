@@ -6,37 +6,43 @@ import {Calendar} from "react-native-calendars"
 import { MaterialIcons } from '@expo/vector-icons';
 import { month } from './../node_modules/react-native-calendars/src/dateutils';
 import { COLORS } from "../constants";
+import Animated,{FadeIn,FadeOut} from "react-native-reanimated"
 const LineChartcard = ({ data, width }) => {
   const [ismonth,setIsMonth] = useState(true);
   const [currentDate,setCurrentDate] = useState({});
   const vacation = {key: 'vacation', color: 'red', selectedDotColor: 'blue'};
   const massage = {key: 'massage', color: 'blue', selectedDotColor: 'blue'};
   const workout = {key: 'workout', color: 'green'};
-  const monthArr = ["Jan","Feb","Mar","Apr","Mey","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  const monthArr = ["January","February","March","April","Mey","June","July","August","September","October","November","December"]
   const today = new Date()
   const currentDateString = `${today.getFullYear()}-${today.getMonth()+1}-0${(today.getDate())}`
   console.log(currentDateString);
   // const tomorrowDateString = `${today.getFullYear}-${today.getMonth+1}-${today.getDate}`
   return (
-    <Box flex={2} rounded={"md"} bg="white">
+    <Box flex={2} rounded={"md"} bg="white" style={{paddingTop:5}}>
        {ismonth?<Calendar
+      theme={{
+        textMonthFontSize:15,
+        textMonthFontWeight:'600',
+        monthTextColor:"black"
+      }}
       markingType={'multi-dot'}
       markedDates={{
         [currentDateString]: {dots: [vacation, massage, workout]},
         '2022-12-04': {dots: [massage, workout]}
       }}
   onDayPress={day => {
-    // console.log('selected day', day);
+    console.log('selected day', day);
     setCurrentDate(day);
     setIsMonth(false)
   }}
   style={{
-    height:320
+    height:310,
   }}
-  />:<View style={{height:320}}>
+  />:<Animated.View style={{height:320}}>
 
       <View style={{alignItems:"center",justifyContent:"center",paddingVertical:20}}>
-        <Text style={{fontSize:18,color:COLORS.secondaryColor60,fontWeight:"600",}}>{`${monthArr[currentDate?.month-1]} - ${currentDate?.day}`}</Text>
+        <Text style={{fontSize:15,color:"#2b2b2b",fontWeight:"600",}}>{`${ currentDate?.year} ${monthArr[currentDate?.month-1]} ${currentDate?.day}`}</Text>
       </View>
       <ScrollView style={{height:300,paddingBottom:30}}
       showsVerticalScrollIndicator={false}
@@ -52,7 +58,7 @@ const LineChartcard = ({ data, width }) => {
     <TouchableOpacity onPress={()=>{setIsMonth(true)}} style={{width:20,height:20,alignItems:'center',justifyContent:"center",position:"absolute",top:10,left:10}}>
     <MaterialIcons name="cancel" size={20} color="grey" />
     </TouchableOpacity>
-    </View>}
+    </Animated.View>}
     </Box>
   );
 };

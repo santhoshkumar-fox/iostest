@@ -9,8 +9,16 @@ import Animated, { FadeIn,SlideInUp} from "react-native-reanimated";
 import { COLORS } from "./../../constants/theme";
 import UrlConfigSheet from './../../components/UrlConfigSheet';
 import { isLoaded } from "expo-font";
-
-const dummycardArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view"
+const dummycardArr = [
+  "New South Wales, 2264, Australia",
+  "New South Wales, 2264, Australia",
+  "New South Wales, 2264, Australia",
+  "New South Wales, 2264, Australia",
+  "New South Wales, 2264, Australia",
+  "New South Wales, 2264, Australia",
+  "New South Wales, 2264, Australia",
+];
 const LOGIN_URL = "https://eyecare-emr.zvolv.com/rest/v17/user/login";
 const form = new FormData();
 form.append("email", "sriram@pentafox.in");
@@ -25,7 +33,7 @@ const Login = () => {
   const [isSecure, setIsSecure] = useState(true);
   const [isModel, setIsModel] = useState(false);
   const [clinicName, setClinicName] = useState("Choose Clinic");
-  const [isLocal,setIsLocal] = useState(true);
+  const [isLocal,setIsLocal] = useState(false);
   const onSubmit = () => {
     navigate("Dashboard");
   };
@@ -56,6 +64,9 @@ const Login = () => {
 
   return (
     <Box justifyContent={"center"} alignItems="center" flex={1}>
+            {/* <View style={{height:30,width:SIZE.width,backgroundColor:"green",position:"absolute",bottom:0,zIndex:1}}>
+                <Text style={{color:"white",textAlign:"center"}}>Online</Text>
+           </View> */}
       <ImageBackground
         source={images.loginBg}
         resizeMode={"cover"}
@@ -68,8 +79,9 @@ const Login = () => {
         ]}
       />
 
-      <KeyboardAvoidingView
+      <KeyboardAwareScrollView
         style={styles.container}
+      
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <View style={{ flex: 1 }} />
@@ -158,7 +170,7 @@ const Login = () => {
             </View>
           </View>
         </View>
-      </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
 
       {isModel && (
         <TouchableOpacity
@@ -197,7 +209,7 @@ const Login = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Text>hello react</Text>
+                  <Text style={{width:"80%",textAlign:"center"}}>{e}</Text>
                 </TouchableOpacity>
               );
             })}
@@ -205,7 +217,11 @@ const Login = () => {
           </Animated.ScrollView>
         </TouchableOpacity>
       )}
-      <TouchableOpacity style={styles.settingCon}>
+      <TouchableOpacity style={styles.settingCon}
+      onPress={()=>{
+        setIsLocal(!isLocal)
+      }}
+      >
         <Ionicons
           name="settings-outline"
           size={30}
@@ -215,7 +231,9 @@ const Login = () => {
       {isLocal && 
         <UrlConfigSheet isLocal={isLocal} setIsLocal={setIsLocal}/>
         }
+        
     </Box>
+
   );
 };
 
@@ -229,6 +247,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     width: SIZE.width,
+    position:"absolute",
+    bottom:0,
+    overflow:'visible'
   },
   loginContainer: {
     flex: 1,

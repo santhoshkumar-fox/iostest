@@ -2,8 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import {MaterialCommunityIcons,Ionicons,MaterialIcons,} from "@expo/vector-icons";
 import { COLORS,} from "../constants";
+import { Box } from 'native-base';
 
-const Toolbar = ({ undoCallBack, redoCallback,zoomCallback,drawCallback, isDraw }) => {
+const Toolbar = ({ undoCallBack, redoCallback,zoomCallback,drawCallback, isDraw,saveCallback }) => {
   const [showToolBar, setShowToolBar] = React.useState(true);
   
   const onClick = ({ callback, draw }) => {
@@ -35,9 +36,9 @@ const Toolbar = ({ undoCallBack, redoCallback,zoomCallback,drawCallback, isDraw 
             justifyContent: "center",
           }}
         >
-          <View style={styles.toolbar}>
+          <Box shadow={2} style={styles.toolbar}>
             {/* make changes in that*/}
-            <View style={{flexDirection:"row",borderWidth:StyleSheet.hairlineWidth,padding:4,borderRadius:15,borderColor:COLORS.secondaryColor80}}>
+            <View style={{flexDirection:"row",borderWidth:StyleSheet.hairlineWidth,padding:2,borderRadius:5,borderColor:COLORS.secondaryColor80}}>
             <TouchableOpacity style={[styles.toolBarBtn,{paddingLeft:1},(!isDraw)&&{ backgroundColor: COLORS.secondaryColor80 }]} onPress={() => onClick({ callback: zoomCallback, draw: false })}>
               <Ionicons name="md-crop-outline" size={24} color={(!isDraw)? "white":"black"}/>
               <Text style={[styles.btnText,(!isDraw)&&{ color:"white"}]}>Zoom</Text>
@@ -57,7 +58,7 @@ const Toolbar = ({ undoCallBack, redoCallback,zoomCallback,drawCallback, isDraw 
               <Text style={styles.btnText}>Redo</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.toolBarBtn} onPress={()=>{}}>
+            <TouchableOpacity style={styles.toolBarBtn} onPress={saveCallback}>
               <Ionicons name="save" size={24} color="rgba(0, 0, 0, 0.6)" />
               <Text style={styles.btnText}>Save</Text>
             </TouchableOpacity>
@@ -70,7 +71,7 @@ const Toolbar = ({ undoCallBack, redoCallback,zoomCallback,drawCallback, isDraw 
             >
               <MaterialIcons name="cancel" size={24} color={COLORS.secondaryColor} />
             </TouchableOpacity> */}
-          </View>
+          </Box>
         </View>
       )}
     </View>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   
     backgroundColor: "#0073AE",
     width: 150,
-    height:45,
+    height:40,
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 30,
@@ -98,13 +99,14 @@ const styles = StyleSheet.create({
   toolbarContainer: {
     alignItems: "center",
     height: 50,
+    // backgroundColor:"red",
     justifyContent: "center",
   },
   toolbar: {
-    height: 50,
-    width:450,
+    height: 40,
+    width:430,
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: "white",
     flexDirection: "row",
     alignItems: "center",

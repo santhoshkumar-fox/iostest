@@ -2143,6 +2143,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-2.8.1.tgz#6e785431db49318048fdd14b601998437b6cc200"
   integrity sha512-DCmCIC0Gn9m6K0Mlg2MwNmTxMEpBu5lTLsI6b/XUAv/vLGa6o+X7RhCai4FWeqkjCU36+ZOwaLzDo4NBWMXaoQ==
 
+"@react-native-community/netinfo@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-9.3.0.tgz#9792c23341eab5c629566baee016146f4f3f6086"
+  integrity sha512-NNdMeIXXqmPCbXrWxVqRzZ1gEZ6L1ykotWnCZLVjQBUgjyGWdL5LiDM/bcIa5DLzqZY7Km08rMgB7BoHUuEmnQ==
+
 "@react-native-community/slider@4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.2.3.tgz#7ed4f00ca2c50c666c47a59205b3df031d2588eb"
@@ -7025,6 +7030,14 @@ rn-perfect-sketch-canvas@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/rn-perfect-sketch-canvas/-/rn-perfect-sketch-canvas-0.3.0.tgz#829cee82b939b2d82d0df1a7418ea638f9571cb4"
   integrity sha512-qK82NW1YjlKSK9oT3iGrPBYiEKkygVHGqVSupwTSbIJJ+SaRodQ2Td+QZ86inFcYQqJJ+EcpFzTpZ2Ln2+Zfow==
+  dependencies:
+    perfect-freehand "^1.1.0"
+    valtio "^1.6.1"
+
+rn-sketch-save@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/rn-sketch-save/-/rn-sketch-save-0.2.0.tgz#259bce82ace8c3cf49ec7da315f1314fabb48021"
+  integrity sha512-uT3HhTjJRaiAicFr+mhzWIKEXoBx/Qby49NV/0fJaz1B/4r20zQVeQK6nHAUWFQ7AJDi4bYbCvea+IIJSfDEoA==
   dependencies:
     perfect-freehand "^1.1.0"
     valtio "^1.6.1"
