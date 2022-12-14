@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import {MaterialCommunityIcons,Ionicons,MaterialIcons,} from "@expo/vector-icons";
-import { COLORS,} from "../constants";
+import { COLORS, SIZE,} from "../constants";
 import { Box } from 'native-base';
 
 const Toolbar = ({ undoCallBack, redoCallback,zoomCallback,drawCallback, isDraw,saveCallback }) => {
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: "black",
+    fontSize:SIZE.h4,
   },
   toolbarContainer: {
     alignItems: "center",

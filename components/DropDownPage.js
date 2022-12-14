@@ -2,6 +2,7 @@ import { Box } from 'native-base';
 import React, { useState } from 'react';
   import { StyleSheet } from 'react-native';
   import { Dropdown } from 'react-native-element-dropdown';
+import { SIZE } from '../constants';
 
 
   const data = [
@@ -58,10 +59,10 @@ import React, { useState } from 'react';
       marginRight: 5,
     },
     placeholderStyle: {
-      fontSize: 16,
+      fontSize: SIZE.h3,
     },
     selectedTextStyle: {
-      fontSize: 16,
+      fontSize:  SIZE.h3,
     },
     iconStyle: {
       width: 20,
@@ -69,7 +70,7 @@ import React, { useState } from 'react';
     },
     inputSearchStyle: {
       height: 40,
-      fontSize: 16,
+      fontSize:  SIZE.h3,
     //   backgroundColor:'red',
       borderRadius:10,
 

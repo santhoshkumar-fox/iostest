@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 0,
   },
   cardText: {
-    fontSize: 14,
+    fontSize: SIZE.h4,
     fontWeight: "700",
     color: "black",
     opacity: 0.8,

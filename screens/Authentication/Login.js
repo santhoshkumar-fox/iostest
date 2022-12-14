@@ -44,10 +44,11 @@ const Login = () => {
           username
          
         );
-        onSubmit();
+        
       } catch (error) {
         
       }
+      onSubmit();
     };
 
   
