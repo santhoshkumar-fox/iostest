@@ -112,16 +112,16 @@ const Dashboard = () => {
             <PatientVistCard/>
           </VStack>
         </HStack>
-        <Heading size={"sm"} mb={2} ml={1} style={{fontSize:15,fontWeight:"600",color:"#2b2b2b"}}>
+        <Heading size={"sm"} mb={2} ml={1} style={{fontSize:SIZE.h3,fontWeight:"600",color:"#2b2b2b"}}>
           Your Next Patients
         </Heading>
         <Box rounded={"md"}  flex={1} borderRadius={5} shadow={3}>
           <VStack>
             <Box style={styles.tableHead}>
               {dumyData.tableData.head.map((d, i) => (
-                <Box key={i} flex={i === 0 ? 1.5 : 1}>
+                <Box key={i} flex={i === 0 ? 1.5 : 1} style={{paddingHorizontal:0}}>
                   {["string", "number"].includes(typeof d) ? (
-                    <Text size={"sm"} color={"gray.900"} style={{fontWeight:"600",fontSize:SIZE.h4}}>
+                    <Text size={"sm"} color={"gray.900"} style={{fontWeight:"600",fontSize:SIZE.h4,}}>
                       {d}
                     </Text>
                   ) : (

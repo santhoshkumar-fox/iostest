@@ -44,11 +44,10 @@ const Login = () => {
           username
          
         );
-        
+        onSubmit();
       } catch (error) {
         
       }
-      onSubmit();
     };
 
   
@@ -122,7 +121,8 @@ const Login = () => {
                 <Input
                   height={10}
                   placeholder="Enter Email ID"
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+                  // value={"Enter Email Id"}
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.9)",fontSize:14 }}
                 />
               </FormControl>
               <FormControl w="75%" maxW="300px" marginTop={"2"}>
@@ -131,7 +131,7 @@ const Login = () => {
                   height={10}
                   placeholder="Enter Password"
                   secureTextEntry={isSecure}
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.9)",fontSize:14  }}
                   backgroundColor={"white"}
                   InputRightElement={
                     <TouchableOpacity
@@ -180,7 +180,9 @@ const Login = () => {
                   loginProcess();
                 }}
               >
-                Login
+                <Text style={{color:"white"}}>
+                  Login
+                </Text>
               </Button>
             </View>
           </View>
@@ -304,7 +306,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13,
   },
   loginConotainerText: {
-    fontSize: 12,
+    fontSize: 14,
     color: "rgba(1, 5, 5, .4)",
   },
   modelCon: {

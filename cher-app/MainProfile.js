@@ -340,7 +340,7 @@ const MainProfile = () => {
         style={{
           textAlign: "center",
           color: "rgba(56, 55, 55, .8)",
-          fontSize: 20,
+          fontSize: SIZE.h2,
           fontWeight: "800",
           marginTop: 40,
         }}

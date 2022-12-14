@@ -8,7 +8,7 @@ const PatientVistCard = () => {
   
   return (
     <Box  style={styles.maincontainer}>
-      <Text style={{ color: "#2b2b2b", fontWeight: "600",position:"absolute",top:18,fontSize:SIZE.h4}}>
+      <Text style={{ color: "#2b2b2b", fontWeight: "600",position:"absolute",top:18,fontSize:SIZE.h3}}>
         Patient Visit Summary
       </Text>
       <View style={{ flexDirection: "row" ,marginTop:12}}>
