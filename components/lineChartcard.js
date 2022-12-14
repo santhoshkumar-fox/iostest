@@ -4,7 +4,6 @@ import { Box, ScrollView } from "native-base";
 // import { LineChart } from "react-native-gifted-charts";
 import {Calendar} from "react-native-calendars"
 import { MaterialIcons } from '@expo/vector-icons';
-import { month } from './../node_modules/react-native-calendars/src/dateutils';
 import { COLORS } from "../constants";
 import Animated,{FadeIn,FadeOut} from "react-native-reanimated"
 const LineChartcard = ({ data, width }) => {
