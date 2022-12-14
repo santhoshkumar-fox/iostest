@@ -1,4 +1,4 @@
-import { Box} from "native-base";
+import { Box,Text} from "native-base";
 import { ActionButton } from "../components";
 export const chartData = [
   { value: 30 },
@@ -16,7 +16,7 @@ const tableData = {
     "Gender",
     "Diagnosis",
     "  In Time",
-    <Box alignItems={"flex-end"}>Action</Box>,
+    <Box alignItems={"flex-end"} ><Text style={{fontWeight:"600"}}>Action</Text></Box>,
   ],
   rows: [
     ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],

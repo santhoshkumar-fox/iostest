@@ -15,7 +15,9 @@ const LineChartcard = ({ data, width }) => {
   const workout = {key: 'workout', color: 'green'};
   const monthArr = ["January","February","March","April","Mey","June","July","August","September","October","November","December"]
   const today = new Date()
-  const currentDateString = `${today.getFullYear()}-${today.getMonth()+1}-0${(today.getDate())}`
+  const currentDateString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate())}`
+  const yesterdayString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate()-1)}`
+  const TomorrowString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate()+1)}`
   console.log(currentDateString);
   // const tomorrowDateString = `${today.getFullYear}-${today.getMonth+1}-${today.getDate}`
   return (
@@ -29,6 +31,8 @@ const LineChartcard = ({ data, width }) => {
       markingType={'multi-dot'}
       markedDates={{
         [currentDateString]: {dots: [vacation, massage, workout]},
+        [yesterdayString]: {dots: [vacation, workout]},
+        [TomorrowString]: {dots: [massage, workout]},
         '2022-12-04': {dots: [massage, workout]}
       }}
   onDayPress={day => {
@@ -39,10 +43,10 @@ const LineChartcard = ({ data, width }) => {
   style={{
     height:310,
   }}
-  />:<Animated.View style={{height:320}}>
+  />:<Animated.View style={{height:310}}>
 
-      <View style={{alignItems:"center",justifyContent:"center",paddingVertical:20}}>
-        <Text style={{fontSize:15,color:"#2b2b2b",fontWeight:"600",}}>{`${ currentDate?.year} ${monthArr[currentDate?.month-1]} ${currentDate?.day}`}</Text>
+      <View style={{alignItems:"center",justifyContent:"center",paddingVertical:20}}> 
+        <Text style={{fontSize:15,color:"#2b2b2b",fontWeight:"600",}}>{`${currentDate?.day} ${monthArr[currentDate?.month-1]} ${ currentDate?.year} `}</Text>
       </View>
       <ScrollView style={{height:300,paddingBottom:30}}
       showsVerticalScrollIndicator={false}

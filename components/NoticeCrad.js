@@ -8,7 +8,7 @@ const NoticeCrad = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <Card title={"Average Wait times for consultation(Min)"} count={"30"}/>   
       <Card title={"Average Wait times for testing(Min)"} count={"15"}/>   
-      <Card title={"Average Age Group"} count={"30"}/>   
+      <Card title={"Average Age Group"} count={"30"}/>    
       <Card title={"Total Patients with Diabetes"} count={"10"}/>   
       <Card title={"Total Patients with Occupation Hazard "} count={"05"}/>   
       <Card title={"Most consultation types"} count={"05"}/>   
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
       cardContainer:{
         width:200,
         height:100,
-        // backgroundColor:"whitesmoke",
         alignItems:'center',
         justifyContent:'center'
       },
@@ -49,7 +48,6 @@ const styles = StyleSheet.create({
         width:170,
         height:40,
         textAlign:"center",
-        // color:COLORS.secondaryColor60,
         color:"black",
         fontSize:12,
         fontWeight:"500"

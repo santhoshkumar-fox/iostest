@@ -7,21 +7,21 @@ const MeteDataCard = () => {
       <Heading size={"xs"} mb={2}>
       Patient Key Information
       </Heading>
-      <HStack mt={2} space={4}>
+      <HStack mt={2} space={1} >
         <VStack space={1}>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Allergies :
             </Text>
-            <Text fontSize={"xs"}>null</Text>
+            <Text fontSize={"xs"}>Values</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Diabetic  :
             </Text>
             <Text fontSize={"xs"}>No</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Veteran :
             </Text>
@@ -30,19 +30,19 @@ const MeteDataCard = () => {
         </VStack>
 
         <VStack space={1} style={{marginHorizontal:20}}>
-        <HStack space={2}>
+        <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Pensioner :
             </Text>
             <Text fontSize={"xs"}>Yes</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Referral Doctor :
             </Text>
             <Text fontSize={"xs"}>Jhon Deo</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Insulin dependent :
             </Text>
@@ -50,13 +50,13 @@ const MeteDataCard = () => {
           </HStack>
         </VStack>
         <VStack space={1}>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Smoker :
             </Text>
             <Text fontSize={"xs"}>No</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Occupation : 
 
@@ -64,7 +64,7 @@ const MeteDataCard = () => {
             </Text>
             <Text fontSize={"xs"}>Engineer</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
             Claustrophobia : 
             </Text>

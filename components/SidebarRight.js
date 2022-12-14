@@ -17,8 +17,8 @@ const dummyContentData = ["Referrals", "Consent Forms", "Doctor Letter"];
 // MC
 
 
-const SideBarRight = ({onPress,setShowLeftSideBard,showLeftSideBard}) => {
-  const [index, setIndex] = useState(dummyData.length - 1);
+const SideBarRight = ({onPress,setShowLeftSideBard,showLeftSideBard,setIsShowThumbList}) => {
+  const [index, setIndex] = useState(null);
 
   const animationvalue = useSharedValue(0);
 
@@ -72,6 +72,7 @@ const SideBarRight = ({onPress,setShowLeftSideBard,showLeftSideBard}) => {
             index={index}
             setIndex={setIndex}
             onPress={onPress}
+            setIsShowThumbList={setIsShowThumbList}
           />
         );
       })}
@@ -87,7 +88,7 @@ const SideBarRight = ({onPress,setShowLeftSideBard,showLeftSideBard}) => {
 };
 
 // 
-const Card = ({ title, cardId, index, setIndex,onPress}) => {
+const Card = ({ title, cardId, index, setIndex,onPress,setIsShowThumbList}) => {
   return (
     <Animated.View
       layout={Layout.duration(300)}
@@ -103,8 +104,11 @@ const Card = ({ title, cardId, index, setIndex,onPress}) => {
         onPress={() => {
           setIndex(cardId);
           if (index === cardId) {
-            setIndex(13);
+            setIndex(null);
+            setIsShowThumbList(false);
           }
+
+
         }}
       >
         <Text style={styles.cardText}>{title}</Text>
@@ -206,6 +210,10 @@ const styles = StyleSheet.create({
     borderColor: "grey",
   },
   cardContentText: {
+    // backgroundColor:'red',
+    // paddingHorizontal:20,
+    width:200,
+    paddingTop:10,
     color: "rgba(94, 94, 94, 1)",
   },
 });

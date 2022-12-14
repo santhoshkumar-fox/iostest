@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import {Box,KeyboardAvoidingView,Text,Heading,Input,FormControl,Button,} from "native-base";
+import {Box,KeyboardAvoidingView,Text,Heading,Input,FormControl,Button} from "native-base";
 import {View,Image,Platform,StyleSheet,ImageBackground,} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { images, SIZE } from "../../constants";
 import { TouchableOpacity } from "react-native";
@@ -11,14 +12,8 @@ import UrlConfigSheet from './../../components/UrlConfigSheet';
 import { isLoaded } from "expo-font";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view"
 const dummycardArr = [
-  "New South Wales, 2264, Australia",
-  "New South Wales, 2264, Australia",
-  "New South Wales, 2264, Australia",
-  "New South Wales, 2264, Australia",
-  "New South Wales, 2264, Australia",
-  "New South Wales, 2264, Australia",
-  "New South Wales, 2264, Australia",
-];
+  "Burwood","Canberra","Castle Hill","Dubbo","Sydney","Morisset","Epping","Parramatta"];
+
 const LOGIN_URL = "https://eyecare-emr.zvolv.com/rest/v17/user/login";
 const form = new FormData();
 form.append("email", "sriram@pentafox.in");
@@ -38,6 +33,25 @@ const Login = () => {
     navigate("Dashboard");
   };
 
+  // fetch data to LocalStorage
+
+  
+
+   const  stroreusername = async (username) => {
+      try {
+        await AsyncStorage.setItem(
+          'CehrUsername',
+          username
+         
+        );
+        onSubmit();
+      } catch (error) {
+        
+      }
+    };
+
+  
+
   const loginProcess = async () => {
     try {
       const response = await fetch(LOGIN_URL, {
@@ -54,8 +68,8 @@ const Login = () => {
       });
       const result = await response.json();
       if (response.status == 200) {
-        console.log(result);
-        onSubmit();
+        stroreusername(result?.name);
+        
       }
     } catch (error) {
       console.log("[ERR]", error.message);
@@ -209,7 +223,7 @@ const Login = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Text style={{width:"80%",textAlign:"center"}}>{e}</Text>
+                  <Text style={{width:"100%",textAlign:"center"}}>{e}</Text>
                 </TouchableOpacity>
               );
             })}

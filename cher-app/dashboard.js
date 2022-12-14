@@ -1,11 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import { Box, ScrollView, Text, Heading, HStack, VStack } from "native-base";
-import { View, StyleSheet, TouchableOpacity, Platform } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Platform} from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
 import { Header, LineChartcard, MiniCard, NoticeCrad, PatientVistCard } from "../components";
 import { dumyData } from "../constants";
 import { responsiveWidth } from "react-native-responsive-dimensions";
 import { COLORS } from './../constants/theme';
+import { useEffect, useState } from 'react';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Dashboard = () => {
   const { navigate } = useNavigation();
   const onRowClick = () => {
@@ -26,6 +29,24 @@ const Dashboard = () => {
     "December",
   ];
 
+  const [username,setUserName] = useState("");
+  useEffect(()=>{
+
+    getUsername();
+
+  },[])
+
+  const getUsername = async () => {
+    try {
+      const value = await AsyncStorage.getItem('CehrUsername');
+      if (value !== null) {
+        console.log("[STORE] :",value);
+        setUserName(value);
+      }
+    } catch (error) {
+    }
+  };
+
   const getTime = () => {
     var hours = new Date().getHours();
     var minutes = new Date().getMinutes();
@@ -44,7 +65,7 @@ const Dashboard = () => {
       <Box flex={1} p={4}>
         <Box backgroundColor={"white"} mb={4} mt={1} p={4} pt={2} pb={2} borderRadius={5} shadow={2} >       
          <Heading size={"md"} mb={2} color={"lightBlue.800"}>
-          Welcome, Dr. John Doe
+          {`Welcome, ${username}`}
         </Heading>
         <HStack alignItems={"center"} mt={2} mb={2}>
           <Box flex={1} flexDirection={"row"} alignItems={"center"}>
@@ -100,7 +121,7 @@ const Dashboard = () => {
               {dumyData.tableData.head.map((d, i) => (
                 <Box key={i} flex={i === 0 ? 1.5 : 1}>
                   {["string", "number"].includes(typeof d) ? (
-                    <Text size={"sm"} color={"gray.900"}>
+                    <Text size={"sm"} color={"gray.900"} style={{fontWeight:"600"}}>
                       {d}
                     </Text>
                   ) : (

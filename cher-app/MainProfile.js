@@ -1,7 +1,7 @@
 // import { useNavigation } from "@react-navigation/native";
-import { Ionicons, MaterialIcons, Entypo,Feather } from "@expo/vector-icons";
-import {SvgXml} from 'react-native-svg'
-import { Box, Text, HStack } from "native-base";
+import { Ionicons, MaterialIcons, Entypo, Feather } from "@expo/vector-icons";
+import { SvgXml } from "react-native-svg";
+import { Box, Text, HStack, ScrollView } from "native-base";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   View,
@@ -22,13 +22,13 @@ import {
   SideBarRight,
   GoBack,
 } from "../components";
+import {useToast} from "native-base"
 // ⚠️ recycle waring apper will chage in future
 import ChatBoxModel from "./../components/chatboxModel";
 import { dumyData, images, COLORS, SIZE } from "../constants";
 import DropDownPage from "../components/DropDownPage";
 import Animated, {
-// import { TouchableOpacity } from 'react-native';
-  FadeIn,
+  PageTransitionEvent,
   FadeOut,
   Layout,
   SlideInDown,
@@ -36,76 +36,91 @@ import Animated, {
   SlideInLeft,
   SlideInUp,
   SlideOutDown,
+  FadeIn,
   BounceIn,
+  SlideOutRight,
 } from "react-native-reanimated";
 
 const thumbSpacing = 10;
 const thumbImageSize = 60;
 const MainProfile = () => {
-  const [currentSvg,setCurrentSvg] = useState([]);
+  const toastr = useToast();
 
+  const toast =  (title)=>{
+    toastr.show({
+      description: title,
+      backgroundColor:COLORS.secondaryColor,
+      duration:2000,
+    })
+  }
+  const [currentSvg, setCurrentSvg] = useState([]);
   const [imageValue, setImageValue] = useState(4);
   const [isDraw, setIsDraw] = useState(true);
   const canvaRef = useRef(null);
   const [isShowThumbList, setIsShowThumbList] = useState(false);
   const [isScalling, setIsScalling] = useState(false);
   const [scaleWidth, setScalWidth] = useState(70);
-  const [isRightSliderBar,setIsRightSliderBar] = useState(false);
-  const [isROModel,setIsROModel] = useState(false);
-  const [ROChildImage,setROChildImage] = useState(0);
-  // save svgs 
-  const [indicatorValue,setIndicatorValue] = useState([0,1,2,3]);
-  const [savedFlatlistdata,setSavedFlatlistData] = useState([
-    {imagevalue:0,svgvalue:""},
-    {imagevalue:1,svgvalue:""},
-    {imagevalue:2,svgvalue:""},
-    {imagevalue:3,svgvalue:""},
-    {imagevalue:4,svgvalue:""},
-    {imagevalue:5,svgvalue:""},
-  ])
-  const saveSvg = (value)=>{
-    if((value?.split('<path ').length)<=1){console.log("show some error for the changes not done")}else{
-    let s_value = value;
-    let rnsvgString = s_value.replace(/,/g,' ');
-    let rnsvgString2 = rnsvgString.replace(/stroke/g,'fill');
-    let splitpath = rnsvgString2.split('<path')
-    let spltfinal = splitpath[splitpath.length-1].replace('</g>',' ')
-    let spltfina2 = spltfinal.replace('</svg>',' ')
-    splitpath.splice(0,1)
-    splitpath.pop();
-    splitpath.push(spltfina2)
-    console.log("value :",splitpath);
-    // setCurrentSvg([...currentSvg,...splitpath]);
-    setSavedFlatlistData([...savedFlatlistdata,{imagevalue:imageValue,svgvalue:[...currentSvg,...splitpath]}])
+  const [isRightSliderBar, setIsRightSliderBar] = useState(false);
+  const [isROModel, setIsROModel] = useState(false);
+  const [ROChildImage, setROChildImage] = useState(0);
+  const [ismenuIndicator,setismenuIndicator]  = useState(false);
+  // save svgs
+  const [indicatorValue, setIndicatorValue] = useState([1, 2, 3, 4]);
+  const [savedFlatlistdata, setSavedFlatlistData] = useState([
+    { imagevalue: 0, svgvalue: "" },
+    { imagevalue: 1, svgvalue: "" },
+    { imagevalue: 2, svgvalue: "" },
+    { imagevalue: 3, svgvalue: "" },
+    { imagevalue: 4, svgvalue: "" },
+    { imagevalue: 5, svgvalue: "" },
+  ]);
+  const saveSvg = (value) => {
+    if (value?.split("<path ").length <= 1) {
+      console.log("show some error for the changes not done");
+      toast("No Change to Save");
+    } else {
+      let s_value = value;
+      let rnsvgString = s_value.replace(/,/g, " ");
+      let rnsvgString2 = rnsvgString.replace(/stroke/g, "fill");
+      let splitpath = rnsvgString2.split("<path");
+      let spltfinal = splitpath[splitpath.length - 1].replace("</g>", " ");
+      let spltfina2 = spltfinal.replace("</svg>", " ");
+      splitpath.splice(0, 1);
+      splitpath.pop();
+      splitpath.push(spltfina2);
+      console.log("value :", splitpath);
+      // setCurrentSvg([...currentSvg,...splitpath]);
+      setSavedFlatlistData([
+        ...savedFlatlistdata,
+        { imagevalue: imageValue, svgvalue: [...currentSvg, ...splitpath] },
+      ]);
+      canvaRef?.current?.reset();
+    toast("saved!");
     }
-  }
-const TopChildSvg = ()=>{
-    const path = savedFlatlistdata[ROChildImage].svgvalue;
-    let stringpath = '';
-    path?.map((e)=>{
-      stringpath = stringpath + `<path ${e}`
-    })
-    const svg = `<svg width="0" height="0">
+    
+  };
+
+  const TopChildSvg = () => {
+    const path = savedFlatlistdata[ROChildImage]?.svgvalue;
+    let stringpath = "";
+   if(path){
+    path?.map((e) => {
+      stringpath = stringpath + `<path ${e}`;
+    });
+    const svg = `
+    <svg width="0" height="0">
     <rect width="0" height="0" fill="white"/>
-  <g>
+    <g>
     ${stringpath}
     </g>
-    </svg>`
-  
-  return(
-    <SvgXml xml={svg} width={'100%'} height={'100%'}/>
-    // null
-  )
- }
+    </svg>`;
 
-
-
-
+    return <SvgXml xml={svg} width={"100%"} height={"100%"} />;
+   }
+  };
 
   // Thumb FlateList
-
   const [active, setActive] = useState(0);
-
   // effects
   useEffect(() => {
     canvaRef?.current?.isDrawToggle();
@@ -116,6 +131,7 @@ const TopChildSvg = ()=>{
       return !v;
     });
   }, []);
+  //callBack functions
   const setterscalingwidth = useCallback(() => {
     setScalWidth((v) => {
       return v === 95 ? 70 : 95;
@@ -129,9 +145,9 @@ const TopChildSvg = ()=>{
   useEffect(() => {
     canvaRef?.current?.reset();
     setCurrentSvg([]);
-    // console.log("Imagevalue",imageValue);
   }, [imageValue]);
 
+  // For scale the value hardcoded will clear when the apple PK imle
   const FullScale = () => {
     return (
       <TouchableOpacity
@@ -151,6 +167,7 @@ const TopChildSvg = ()=>{
         onPress={() => {
           setscalling();
           setterscalingwidth();
+          setIsRightSliderBar(false);
         }}
       >
         <MaterialIcons
@@ -161,6 +178,33 @@ const TopChildSvg = ()=>{
       </TouchableOpacity>
     );
   };
+
+  const Menuindicatior = () => {
+    return (
+      <TouchableOpacity
+        style={[
+          {
+            width: 30,
+            height: 30,
+            backgroundColor: COLORS.secondaryColor15,
+            position: "absolute",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 10,
+            right: 50,
+            top: 15,
+          },
+        ]}
+        onPress={() => {
+          setismenuIndicator(true);
+        }}
+      >
+       <Entypo name="menu" size={20} color={COLORS.secondaryColor60}/>
+        
+      </TouchableOpacity>
+    );
+  };
+
   const Childcon = useCallback(
     ({ canvaRef }) => {
       return (
@@ -187,65 +231,110 @@ const TopChildSvg = ()=>{
           <View style={{}}>
             <ChatBoxModel />
           </View>
+          <Menuindicatior/>
           {/* <TouchableOpacity style={{position:"absolute",width:40,height:40,bottom:0,alignItems:"center",justifyContent:"center"}}>
             <Entypo name="menu" size={24} color={COLORS.secondaryColor}/>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
-          <View style={{width:300,height:400,backgroundColor:"white",position:"absolute",bottom:0,left:0}}>
-          <View style={{flexDirection:'row',width:"100%",paddingHorizontal:40,justifyContent:"space-between",alignItems:"center",marginTop:20}}>
-              <Text>Item</Text>
-              <Text>-</Text>
-              <Text>Value</Text>
+          
+          <FullScale />
+
+          {ismenuIndicator && 
+          <ItemMenuCard/>
+             }
+        </Animated.View>
+      );
+    },
+    [imageValue,ismenuIndicator,indicatorValue]
+  );
+
+ const ItemMenuCard = useCallback(()=>{
+  const tosterMenu = useToast();
+  const toastMenu =  (title)=>{
+    tosterMenu.show({
+      description: title,
+      backgroundColor:COLORS.secondaryColor,
+      duration:2000,
+    })
+  }
+
+  return(
+    <Animated.View exiting={FadeOut.delay(300)} style={{width: 574, height: 574 * 1.3,backgroundColor:"white",position:"absolute",bottom:0,left:0,padding:50}}>
+
+    <View style={{flexDirection:'row',width:"100%",justifyContent:"flex-start",alignItems:"center",}}>
+              <Text style={{flex:4,textAlign:"center"}}>Item</Text>
+              <Text style={{flex:1,textAlign:"center"}}></Text>
+              <Text style={{flex:4,textAlign:"center"}}>Value</Text>
               </View>
 
+              <ScrollView
+              showsVerticalScrollIndicator={false}
+              >
               {indicatorValue.map((e,i)=>{
 
                 return(
-                  <View key={i} style={{flexDirection:'row',width:"100%",paddingHorizontal:10,justifyContent:"space-between",alignItems:"center",marginTop:20}}>
-              <TextInput style={{width:100,paddingVertical:10,paddingHorizontal:10,borderRadius:5,borderWidth:StyleSheet.hairlineWidth,borderColor:COLORS.secondaryColor}}/>
-              <Text>-</Text>
-              <TextInput style={{width:100,paddingVertical:10,paddingHorizontal:10,borderRadius:5,borderWidth:StyleSheet.hairlineWidth,borderColor:COLORS.secondaryColor}}/>
-              </View>
+                <View key={i} style={{flex:1,flexDirection:'row',paddingHorizontal:5,justifyContent:"center",alignItems:"center",marginTop:20}}>
+                  <Text style={{marginRight:10,color:"grey"}}>{`${i+1}`}</Text>
+                <TextInput style={{flex:1,paddingVertical:10,paddingHorizontal:10,borderRadius:5,borderWidth:StyleSheet.hairlineWidth,borderColor:COLORS.secondaryColor}}/>
+                <Text style={{textAlign:'center',marginHorizontal:5}}>:</Text>
+                <TextInput style={{flex:1,paddingVertical:10,paddingHorizontal:10,borderRadius:5,borderWidth:StyleSheet.hairlineWidth,borderColor:COLORS.secondaryColor}}/>
+                </View>
                 )
-              })}
+                })}
+                <View style={{height:150}}>
 
-              <TouchableOpacity style={{flexDirection:"row",borderRadius:5,width:80,height:40,backgroundColor:COLORS.secondaryColor,alignItems:"center",justifyContent:"space-between",paddingHorizontal:15,margin:10,marginTop:30}}
+                </View>
+              </ScrollView>
+
+              <TouchableOpacity activeOpacity={.9} style={{marginLeft:10,flexDirection:"row",borderRadius:5,width:80,height:40,backgroundColor:COLORS.secondaryColor,alignItems:"center",justifyContent:"space-between",paddingHorizontal:15,margin:10,marginTop:30}}
               onPress={()=>{
-                setIndicatorValue([...indicatorValue,"add"])
+                toastMenu("Added!")
+                setIndicatorValue([...indicatorValue,6])
+                
               }}
               >
                 <Text style={{color:"white"}}>Add</Text>
                 <Ionicons name="add-circle" size={14} color="white" />
               </TouchableOpacity>
-              <TouchableOpacity aty>
+              <TouchableOpacity
+            onPress={() => {
+              setismenuIndicator(false)
+            }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              position: "absolute",
+              // backgroundColor:'red',
+              padding:10,
+              top: 10,
+              right: 10,
+            }}
+          >
+            <Feather name="x" size={20} color="grey" />
+          </TouchableOpacity>
+  </Animated.View>
+  )
+ },[ismenuIndicator,indicatorValue])
 
-              </TouchableOpacity>
-          </View> */}
-          <FullScale />
-        </Animated.View>
-      );
-    },
-    [imageValue]
-  );
-  const ChildconModel = 
-    ({ canvaRef }) => {
-      return (
-        <Animated.View
-          layout={Layout.duration(300)}
-          // multiple of 1.3 is actula scalling size fo A4 sheet resolution
-          style={{ width: 574, height: 574 * 1.3 }}
-        >
-          <Image
-            source={dumyData.imagevaluearr[savedFlatlistdata[ROChildImage].imagevalue]}
-            // stretch for the page full view
-            resizeMode={"stretch"}
-            style={[{ width: "100%", height: "100%" },StyleSheet.absoluteFill]}
-          />
-      <TopChildSvg/>
-        </Animated.View>
-      );
-    }
-   
+  const ChildconModel = ({ canvaRef }) => {
+    return (
+      <Animated.View
+        layout={Layout.duration(300)}
+        // multiple of 1.3 is actula scalling size fo A4 sheet resolution
+        style={{ width: 574, height: 574 * 1.3 }}
+      >
+        <Image
+          source={
+            dumyData.imagevaluearr[savedFlatlistdata[ROChildImage].imagevalue]
+          }
+          // stretch for the page full view
+          resizeMode={"stretch"}
+          style={[{ width: "100%", height: "100%" }, StyleSheet.absoluteFill]}
+        />
+        <TopChildSvg />
+      </Animated.View>
+    );
+  };
 
   return (
     <View style={styles.root}>
@@ -280,12 +369,13 @@ const TopChildSvg = ()=>{
             <HStack space={4} mt={4}>
               <MeteDataCard />
               <PatientInformationCard
-                name={"Wanda	Morrison"}
+                name={"Wanda Morrison"}
                 fileNumber={"DC545930"}
                 age={34}
-                diabetic={"NO"}
+                dob={"12/01/2000"}
               />
             </HStack>
+            
           </Box>
           <View
             style={{
@@ -314,7 +404,7 @@ const TopChildSvg = ()=>{
                   canvaRef?.current?.isDrawToggle();
                   setIsDraw(true);
                 }}
-                saveCallback={()=>{
+                saveCallback={() => {
                   saveSvg(canvaRef?.current?.toSvg());
                 }}
                 isDraw={isDraw}
@@ -324,12 +414,12 @@ const TopChildSvg = ()=>{
         </Animated.View>
       )}
 
-      <Box flex={1} style={{ flexDirection: "row", alignItems: "flex-start", }}>
+      <Box flex={1} style={{ flexDirection: "row", alignItems: "flex-start" }}>
         {/* chaneg the image,sketch,topchild,canva always in (540px,540*1.3) */}
         <Animated.View
           style={[
-            { flex: 1, marginHorizontal: 20, marginTop: 20, borderRadius: 5},
-            isRightSliderBar &&{marginLeft:SIZE.width/2-572/2},
+            { flex: 1, marginHorizontal: 20, marginTop: 20, borderRadius: 5 },
+            isRightSliderBar && { marginLeft: SIZE.width / 2 - 572 / 2 },
             isScalling && {
               transform: [
                 { scale: 1.3 },
@@ -346,24 +436,36 @@ const TopChildSvg = ()=>{
           />
         </Animated.View>
         {!isScalling && (
-          <Animated.View entering={SlideInRight} style={{overflow:"visible"}}>
-            <SideBarRight onPress={thumListShow} setShowLeftSideBard={setIsRightSliderBar} showLeftSideBard={isRightSliderBar}/>
-          </Animated.View>
-        )}
-        {!isScalling && (
           <Animated.View
-            entering={SlideInLeft.duration(500)}
-            style={{ position: "absolute", top: -50}}
+            entering={SlideInRight}
+            style={{ overflow: "visible" }}
           >
-            <SideBar/>
+            <SideBarRight
+              onPress={thumListShow}
+              setIsShowThumbList={setIsShowThumbList}
+              setShowLeftSideBard={setIsRightSliderBar}
+              showLeftSideBard={isRightSliderBar}
+            />
           </Animated.View>
         )}
+        
       </Box>
       <Animated.View
         layout={Layout.duration(300)}
         style={[
-          { flexDirection: "row", marginBottom: 10,padding:10,paddingHorizontal:5,borderRadius:5,backgroundColor:"white",marginHorizontal:20,height: 0 },
-          (isShowThumbList && !isScalling && !isRightSliderBar)? { height: 100 } : { backgroundColor:"transparent" },
+          {
+            flexDirection: "row",
+            marginBottom: 10,
+            padding: 10,
+            paddingHorizontal: 5,
+            borderRadius: 5,
+            backgroundColor: "white",
+            marginHorizontal: 20,
+            height: 0,
+          },
+          isShowThumbList && !isScalling && !isRightSliderBar
+            ? { height: 100 }
+            : { backgroundColor: "transparent" },
         ]}
       >
         <Box justifyContent={"center"} backgroundColor={"#BFDCEB"} rounded="sm">
@@ -392,7 +494,7 @@ const TopChildSvg = ()=>{
           renderItem={({ item, index }) => {
             return (
               <Box
-              shadow={4}
+                shadow={4}
                 key={index}
                 rounded="sm"
                 style={{
@@ -403,7 +505,11 @@ const TopChildSvg = ()=>{
               >
                 <TouchableOpacity
                   // onPress={() => toplistScrolltoIndex(index)}
-                  onPress={() => {setActive(index);setIsROModel(true);setROChildImage(index);}}
+                  onPress={() => {
+                    setActive(index);
+                    setIsROModel(true);
+                    setROChildImage(index);
+                  }}
                   style={{ flex: 1 }}
                 >
                   <Image
@@ -465,17 +571,62 @@ const TopChildSvg = ()=>{
           />
         </Animated.View>
       )}
-      {isROModel && <View  style={[{width:SIZE.width,height:SIZE.height,backgroundColor:"rgba(0,0,0,.5)",alignItems:"center",justifyContent:"center"},StyleSheet.absoluteFill]}>
-            <Animated.View entering={SlideInDown} exiting={FadeOut.delay(200)} style={{width:SIZE.width-100,height:SIZE.height-100,backgroundColor:"whitesmoke",borderRadius:20,alignItems:"center",justifyContent:"center"}}>
-              <Text style={{fontSize:20,color:"#2b2b2b",marginBottom:50}}>
-                Title of the Content
-              </Text>
-              <ChildconModel/>
-            </Animated.View>
-            <TouchableOpacity onPress={()=>{setIsROModel(false)}} style={{alignItems:"center",justifyContent:"center",position:"absolute",top:80,right:80}}>
+      {isROModel && (
+        <Animated.View
+        entering={FadeIn}
+        exiting={FadeOut.delay(150)}
+          style={[
+            {
+              width: SIZE.width,
+              height: SIZE.height,
+              backgroundColor: "rgba(0,0,0,.5)",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+            StyleSheet.absoluteFill,
+          ]}
+        >
+          <Animated.View
+            entering={SlideInDown}
+            exiting={SlideOutDown.delay(100)}
+            style={{
+              width: SIZE.width - 100,
+              height: SIZE.height - 100,
+              backgroundColor: "whitesmoke",
+              borderRadius: 20,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ fontSize: 20, color: "#2b2b2b", marginBottom: 50 }}>
+              Title of the Content
+            </Text>
+            <ChildconModel />
+          </Animated.View>
+          <TouchableOpacity
+            onPress={() => {
+              setIsROModel(false);
+            }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              position: "absolute",
+              top: 80,
+              right: 80,
+            }}
+          >
             <Feather name="x" size={24} color="grey" />
-            </TouchableOpacity>
-      </View>}
+          </TouchableOpacity>
+        </Animated.View>
+      )}
+      {!isScalling && (
+          <Animated.View
+            entering={SlideInLeft.duration(500)}
+            style={{ position: "absolute",top:78 }}
+          >
+            <SideBar />
+          </Animated.View>
+        )}
     </View>
   );
 };

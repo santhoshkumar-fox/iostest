@@ -1,24 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
-import NetInfo from "@react-native-community/netinfo";
+// import NetInfo from "@react-native-community/netinfo";
 import React from "react";
 import { COLORS } from "./../constants/theme";
 import { Box } from 'native-base';
 
 const PatientVistCard = () => {
-  const unsubscribe = NetInfo.addEventListener((state) => {
-    console.log("Connection type", state.type);
-    console.log("Is connected?", state.isConnected);
-    console.log("Is connected?", state.details);
-    console.log("Is connected?", state.isInternetReachable);
-    console.log("Is connected?", state.type);
-  });
-  unsubscribe();
+  
   return (
     <Box  style={styles.maincontainer}>
       <Text style={{ color: "#2b2b2b", fontWeight: "600",position:"absolute",top:18,}}>
         Patient Visit Summary
       </Text>
-
       <View style={{ flexDirection: "row" ,marginTop:12}}>
         <Card2 title={"Arrived"} count={30} />
         <Card2 title={"Waiting"} count={50} />
