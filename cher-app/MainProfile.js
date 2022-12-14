@@ -88,8 +88,6 @@ const MainProfile = () => {
       splitpath.splice(0, 1);
       splitpath.pop();
       splitpath.push(spltfina2);
-      console.log("value :", splitpath);
-      // setCurrentSvg([...currentSvg,...splitpath]);
       setSavedFlatlistData([
         ...savedFlatlistdata,
         { imagevalue: imageValue, svgvalue: [...currentSvg, ...splitpath] },
@@ -228,10 +226,10 @@ const MainProfile = () => {
               StyleSheet.absoluteFill,
             ]}
           />
-          <View style={{}}>
+          {!isScalling&&<View style={{}}>
             <ChatBoxModel />
-          </View>
-          <Menuindicatior/>
+          </View>}
+          {!isScalling &&<Menuindicatior/>}
           {/* <TouchableOpacity style={{position:"absolute",width:40,height:40,bottom:0,alignItems:"center",justifyContent:"center"}}>
             <Entypo name="menu" size={24} color={COLORS.secondaryColor}/>
           </TouchableOpacity> */}
@@ -245,7 +243,7 @@ const MainProfile = () => {
         </Animated.View>
       );
     },
-    [imageValue,ismenuIndicator,indicatorValue]
+    [imageValue,ismenuIndicator,indicatorValue,isScalling]
   );
 
  const ItemMenuCard = useCallback(()=>{

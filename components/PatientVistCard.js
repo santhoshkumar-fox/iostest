@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 // import NetInfo from "@react-native-community/netinfo";
 import React from "react";
-import { COLORS } from "./../constants/theme";
+import { COLORS, SIZE } from "./../constants/theme";
 import { Box } from 'native-base';
 
 const PatientVistCard = () => {
   
   return (
     <Box  style={styles.maincontainer}>
-      <Text style={{ color: "#2b2b2b", fontWeight: "600",position:"absolute",top:18,}}>
+      <Text style={{ color: "#2b2b2b", fontWeight: "600",position:"absolute",top:18,fontSize:SIZE.h4}}>
         Patient Visit Summary
       </Text>
       <View style={{ flexDirection: "row" ,marginTop:12}}>
@@ -38,13 +38,13 @@ const Card2 = ({ title, count }) => {
         marginHorizontal: 5,
       }}
     >
-      <Text style={{ color: "white", fontSize: 16, fontWeight: "500" }}>
+      <Text style={{ color: "white", fontSize: SIZE.h3, fontWeight: "500" }}>
         {title}
       </Text>
       <Text
         style={{
           color: "white",
-          fontSize: 34,
+          fontSize: SIZE.h0,
           fontWeight: "800",
           marginTop: 10,
         }}

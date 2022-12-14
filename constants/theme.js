@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+import {RFPercentage} from "react-native-responsive-fontsize"
 const { width, height } = Dimensions.get("window");
 export const COLORS = {
   primarColor:   "rgba(0, 188, 228, 1)",
@@ -33,17 +34,14 @@ export const SIZE = {
   margin: 20,
 
   // font sizes
-  largeTitle: 40,
-  h1: 30,
-  h2: 22,
-  h3: 16,
-  h4: 14,
-  h5: 12,
-  body1: 30,
-  body2: 22,
-  body3: 16,
-  body4: 14,
-  body5: 12,
+  
+  h0:RFPercentage(2.5),
+  h1:RFPercentage(2),
+  h2:RFPercentage(1.8),
+  h3:RFPercentage(1.35),
+  h4:RFPercentage(1.1),
+
+  
 
   // app dimensions
   width,

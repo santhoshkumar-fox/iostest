@@ -1,78 +1,81 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View,ScrollView} from "react-native";
 import React from "react";
 import { Box, Text, Heading, HStack, VStack } from "native-base";
+import {RFPercentage} from "react-native-responsive-fontsize"
 const MeteDataCard = () => {
   return (
-    <Box flex={2} p={4} rounded={"md"} bg="white" shadow={2}>
-      <Heading size={"xs"} mb={2}>
+    <Box flex={2} p={4} rounded={"md"} bg="white" shadow={2} >
+     <ScrollView style={{flex:1 }}>
+     <Heading size={"xs"} mb={2} style={{fontSize:RFPercentage(1)}}>
       Patient Key Information
       </Heading>
-      <HStack mt={2} space={1} >
+      <HStack mt={2} space={1} style={{fontSize:RFPercentage(1)}}>
         <VStack space={1}>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Allergies :
             </Text>
-            <Text fontSize={"xs"}>Values</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>Values</Text>
           </HStack>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Diabetic  :
             </Text>
-            <Text fontSize={"xs"}>No</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>No</Text>
           </HStack>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Veteran :
             </Text>
-            <Text fontSize={"xs"}>No</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>No</Text>
           </HStack>
         </VStack>
 
         <VStack space={1} style={{marginHorizontal:20}}>
         <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Pensioner :
             </Text>
-            <Text fontSize={"xs"}>Yes</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>Yes</Text>
           </HStack>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Referral Doctor :
             </Text>
-            <Text fontSize={"xs"}>Jhon Deo</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>Jhon Deo</Text>
           </HStack>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Insulin dependent :
             </Text>
-            <Text fontSize={"xs"}>No</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>No</Text>
           </HStack>
         </VStack>
         <VStack space={1}>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Smoker :
             </Text>
-            <Text fontSize={"xs"}>No</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>No</Text>
           </HStack>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Occupation : 
 
 
             </Text>
-            <Text fontSize={"xs"}>Engineer</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>Engineer</Text>
           </HStack>
           <HStack space={1}>
-            <Text fontSize={"xs"} color={"gray.500"}>
+            <Text style={{fontSize:RFPercentage(1)}} color={"gray.500"}>
             Claustrophobia : 
             </Text>
-            <Text fontSize={"xs"}>Yes</Text>
+            <Text style={{fontSize:RFPercentage(1)}}>Yes</Text>
           </HStack>
         </VStack>
         
       </HStack>
+     </ScrollView>
     </Box>
   );
 };

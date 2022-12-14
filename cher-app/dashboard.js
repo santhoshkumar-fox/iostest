@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Header, LineChartcard, MiniCard, NoticeCrad, PatientVistCard } from "../components";
 import { dumyData } from "../constants";
 import { responsiveWidth } from "react-native-responsive-dimensions";
-import { COLORS } from './../constants/theme';
+import { COLORS, SIZE } from './../constants/theme';
 import { useEffect, useState } from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Dashboard = () => {
@@ -64,27 +64,27 @@ const Dashboard = () => {
       <Header />
       <Box flex={1} p={4}>
         <Box backgroundColor={"white"} mb={4} mt={1} p={4} pt={2} pb={2} borderRadius={5} shadow={2} >       
-         <Heading size={"md"} mb={2} color={"lightBlue.800"}>
+         <Heading style={{fontSize:SIZE.h1}} mb={2} color={"lightBlue.800"}>
           {`Welcome, ${username}`}
         </Heading>
         <HStack alignItems={"center"} mt={2} mb={2}>
           <Box flex={1} flexDirection={"row"} alignItems={"center"}>
             <Box flexDirection={"row"}>
               <Ionicons name={"ios-calendar-outline"} color="#444" size={17} />
-              <Text ml={2} color={"gray.600"}>
+              <Text ml={2} style={{fontSize:SIZE.h4}} color={"gray.600"}>
                 {months[new Date().getMonth()]} {new Date().getDate()},2022
               </Text>
             </Box>
             <Box flexDirection={"row"} ml={4} alignItems={"center"}>
               <Ionicons name={"ios-time-outline"} color="#444" size={17} />
-              <Text ml={2} color={"gray.600"}>
+              <Text ml={2} style={{fontSize:SIZE.h4}} color={"gray.600"}>
                 {getTime()}
               </Text>
             </Box>
           </Box>
           <Box flexDirection={"row"} ml={4} alignItems={"center"}>
             <Ionicons name={"ios-enter-outline"} color="#444" size={17} />
-            <Text ml={2} color={"gray.600"}>
+            <Text ml={2} style={{fontSize:SIZE.h4}} color={"gray.600"}>
               On duty for 5 hours from 09:30am
             </Text>
           </Box>
@@ -121,7 +121,7 @@ const Dashboard = () => {
               {dumyData.tableData.head.map((d, i) => (
                 <Box key={i} flex={i === 0 ? 1.5 : 1}>
                   {["string", "number"].includes(typeof d) ? (
-                    <Text size={"sm"} color={"gray.900"} style={{fontWeight:"600"}}>
+                    <Text size={"sm"} color={"gray.900"} style={{fontWeight:"600",fontSize:SIZE.h4}}>
                       {d}
                     </Text>
                   ) : (
@@ -141,7 +141,7 @@ const Dashboard = () => {
                   {rowData.map((d, j) => (
                     <Box key={j}  flex={j === 0 ? 1.5 : 1}>
                       {["string", "number"].includes(typeof d) ? (
-                        <Text size={"sm"} color={"gray.900"}>
+                        <Text style={{fontSize:SIZE.h4}} color={"gray.900"}>
                           {d}
                         </Text>
                       ) : (
