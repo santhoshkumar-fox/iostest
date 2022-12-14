@@ -5,79 +5,73 @@ const MeteDataCard = () => {
   return (
     <Box flex={2} p={4} rounded={"md"} bg="white" shadow={2}>
       <Heading size={"xs"} mb={2}>
-        Form Meta-data
+      Patient Key Information
       </Heading>
-      <HStack mt={2} space={4}>
+      <HStack mt={2} space={1} >
         <VStack space={1}>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
-              Name
+            Allergies :
             </Text>
-            <Text fontSize={"xs"}>Value</Text>
+            <Text fontSize={"xs"}>Values</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
-              Name
+            Diabetic  :
             </Text>
-            <Text fontSize={"xs"}>Value</Text>
+            <Text fontSize={"xs"}>No</Text>
+          </HStack>
+          <HStack space={1}>
+            <Text fontSize={"xs"} color={"gray.500"}>
+            Veteran :
+            </Text>
+            <Text fontSize={"xs"}>No</Text>
+          </HStack>
+        </VStack>
+
+        <VStack space={1} style={{marginHorizontal:20}}>
+        <HStack space={1}>
+            <Text fontSize={"xs"} color={"gray.500"}>
+            Pensioner :
+            </Text>
+            <Text fontSize={"xs"}>Yes</Text>
+          </HStack>
+          <HStack space={1}>
+            <Text fontSize={"xs"} color={"gray.500"}>
+            Referral Doctor :
+            </Text>
+            <Text fontSize={"xs"}>Jhon Deo</Text>
+          </HStack>
+          <HStack space={1}>
+            <Text fontSize={"xs"} color={"gray.500"}>
+            Insulin dependent :
+            </Text>
+            <Text fontSize={"xs"}>No</Text>
           </HStack>
         </VStack>
         <VStack space={1}>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
-              Name
+            Smoker :
             </Text>
-            <Text fontSize={"xs"}>Value</Text>
+            <Text fontSize={"xs"}>No</Text>
           </HStack>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
-              Name
+            Occupation : 
+
+
             </Text>
-            <Text fontSize={"xs"}>Value</Text>
+            <Text fontSize={"xs"}>Engineer</Text>
           </HStack>
-        </VStack>
-        <VStack space={1}>
-          <HStack space={2}>
+          <HStack space={1}>
             <Text fontSize={"xs"} color={"gray.500"}>
-              Name
+            Claustrophobia : 
             </Text>
-            <Text fontSize={"xs"}>Value</Text>
-          </HStack>
-          <HStack space={2}>
-            <Text fontSize={"xs"} color={"gray.500"}>
-              Name
-            </Text>
-            <Text fontSize={"xs"}>Value</Text>
+            <Text fontSize={"xs"}>Yes</Text>
           </HStack>
         </VStack>
-        <VStack space={1}>
-          <HStack space={2}>
-            <Text fontSize={"xs"} color={"gray.500"}>
-              Name
-            </Text>
-            <Text fontSize={"xs"}>Value</Text>
-          </HStack>
-          <HStack space={2}>
-            <Text fontSize={"xs"} color={"gray.500"}>
-              Name
-            </Text>
-            <Text fontSize={"xs"}>Value</Text>
-          </HStack>
-        </VStack>
-        <VStack space={1}>
-          <HStack space={2}>
-            <Text fontSize={"xs"} color={"gray.500"}>
-              Name
-            </Text>
-            <Text fontSize={"xs"}>Value</Text>
-          </HStack>
-          <HStack space={2}>
-            <Text fontSize={"xs"} color={"gray.500"}>
-              Name
-            </Text>
-            <Text fontSize={"xs"}>Value</Text>
-          </HStack>
-        </VStack>
+        
       </HStack>
     </Box>
   );

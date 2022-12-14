@@ -1,4 +1,4 @@
-import { Box} from "native-base";
+import { Box,Text} from "native-base";
 import { ActionButton } from "../components";
 export const chartData = [
   { value: 30 },
@@ -15,21 +15,30 @@ const tableData = {
     "Age",
     "Gender",
     "Diagnosis",
-    "Waiting Time",
-    <Box alignItems={"flex-end"}>Action</Box>,
+    "  In Time",
+    <Box alignItems={"flex-end"} ><Text style={{fontWeight:"600"}}>Action</Text></Box>,
   ],
   rows: [
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
-    ["Wanda	Morrison", 34, "Female", "Cateract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+    ["Wanda	Morrison", 34, "Female", "Cataract", "15:30mins", <ActionButton />],
+  
   
   ],
 };
@@ -120,6 +129,25 @@ const agendaEvents = [
     color: "rgba(173, 216, 230, .7)",
   },
 ];
+const imagevaluearr= [require("../assets/images/forms/ClinicalDoctorwhitepage.jpg"),
+  require("../assets/images/forms/CASARecordForm.jpg"),
+  require("../assets/images/forms/ClinicalRefractiveAssessmentpage.jpg"),
+  require("../assets/images/forms/DFRPatientMedicalRecord.jpg"),
+  require("../assets/images/forms/PatientMedicalRecordContinuationForm.jpg"),
+  require("../assets/images/forms/PatientMedicalRecordForm.jpg") ]
 
-const dumyData = { chartData, tableData, agendaEvents };
+  const dummyimagevaluearr= [require("../assets/images/forms/ClinicalDoctorwhitepage.jpg"),
+  require("../assets/images/forms/CASARecordForm.jpg"),
+  require("../assets/images/forms/ClinicalRefractiveAssessmentpage.jpg"),
+  require("../assets/images/forms/DFRPatientMedicalRecord.jpg"),
+  require("../assets/images/forms/PatientMedicalRecordContinuationForm.jpg"),
+  require("../assets/images/forms/PatientMedicalRecordForm.jpg"),
+  require("../assets/images/forms/ClinicalDoctorwhitepage.jpg"),
+  require("../assets/images/forms/CASARecordForm.jpg"),
+  require("../assets/images/forms/ClinicalRefractiveAssessmentpage.jpg"),
+  require("../assets/images/forms/DFRPatientMedicalRecord.jpg"),
+  require("../assets/images/forms/PatientMedicalRecordContinuationForm.jpg"),
+  require("../assets/images/forms/PatientMedicalRecordForm.jpg") ]
+  
+const dumyData = { chartData, tableData, agendaEvents,imagevaluearr,dummyimagevaluearr};
 export default dumyData;

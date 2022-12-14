@@ -2,19 +2,28 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 export const COLORS = {
   primarColor:   "rgba(0, 188, 228, 1)",
+  primarColor90:   "rgba(0, 188, 228, .9)",
   primarColor80: "rgba(0, 188, 228, .8)",
+  primarColor70: "rgba(0, 188, 228, .7)",
   primarColor60: "rgba(0, 188, 228, .6)",
+  primarColor50: "rgba(0, 188, 228, .5)",
   primarColor15: "rgba(0, 188, 228, .3)",
   primarColor10: "rgba(0, 188, 228, .1)",
 
   secondaryColor:   "rgba(0, 115, 174, 1)",
+  secondaryColor90: "rgba(0, 115, 174, .9)",
   secondaryColor80: "rgba(0, 115, 174, .8)",
+  secondaryColor70: "rgba(0, 115, 174, .7)",
   secondaryColor60: "rgba(0, 115, 174, .6)",
+  secondaryColor50: "rgba(0, 115, 174, .5)",
+  secondaryColor40: "rgba(0, 115, 174, .4)",
   secondaryColor30: "rgba(0, 115, 174, .3)",
   secondaryColor15: "rgba(0, 115, 174, .15)",
-
+  
+  departedColor:"#0093AF",
   light01: "rgba(229, 241, 247, 0.5)",
   light02: "#BFDCEB",
+
 };
 
 export const SIZE = {

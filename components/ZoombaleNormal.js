@@ -1,12 +1,13 @@
 import {StyleSheet,View,} from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Animated, {useSharedValue,useAnimatedStyle,withTiming,useAnimatedReaction,} from "react-native-reanimated";
-import { SIZE } from "../constants";
-const sizew=SIZE.width-20 ; //main container size 
-const ZoomableNormal = ({ ChildCon,iszoomable}) => {
+import Animated, {useSharedValue,useAnimatedStyle,withTiming,useAnimatedReaction,Layout} from "react-native-reanimated";
+import { responsiveWidth } from 'react-native-responsive-dimensions';
+//main container size 
+const ZoomableNormal = ({ ChildCon,iszoomable,widthPersentage}) => {
   // states
   // should change the value of the size=child container width and height
-  
+  const sizew=(574) ; //main container size 
+  const sizeh=(responsiveWidth(widthPersentage))*1.3 ; 
   const pinchManualActivation = useSharedValue(0);
   const contextScale = useSharedValue({ scale: 1 });
   const contextTrans = useSharedValue({ x: 0, y: 0 });
@@ -20,8 +21,11 @@ const ZoomableNormal = ({ ChildCon,iszoomable}) => {
 
   const centerFocalImage = {
     x: sizew / 2,
-    y: sizew / 2,
+    y: sizeh / 2,
   };
+  
+  // full scaling Icon Component
+
   // for scalling validation
   useAnimatedReaction(
     () => {
@@ -97,7 +101,7 @@ const ZoomableNormal = ({ ChildCon,iszoomable}) => {
           }
         } else {
           if (
-            e.y - sizew - (e.y - sizew) * animationFinalScaling.value >
+            e.y - sizeh - (e.y - sizeh) * animationFinalScaling.value >
             -(e.translationY + contextTrans.value.y)
           ) {
             animationPanTransY.value = e.translationY + contextTrans.value.y;
@@ -126,14 +130,17 @@ const ZoomableNormal = ({ ChildCon,iszoomable}) => {
   const composed = Gesture.Simultaneous(_pinchGesture, _panGestutr);
 
   return (
-    <View style={styles.mainConatainer}>
+    <Animated.View layout={Layout.duration(300)} style={[styles.mainConatainer,{width: sizew,
+      height: sizew*1.3}]}>
       <GestureDetector gesture={composed}>
         <Animated.View
           style={[
-            {
+            styles.shadow,
+            { 
+              justifyContent:"center",
               width: sizew,
-              height: sizew,
-              backgroundColor: "rgba(205, 242, 250, 0.8)",
+              height: sizew*1.3,
+              
             },
             animationScaleStyle,
           ]}
@@ -141,15 +148,25 @@ const ZoomableNormal = ({ ChildCon,iszoomable}) => {
           {ChildCon}
         </Animated.View>
       </GestureDetector>
-    </View>
+      
+    </Animated.View>
   );
 };
 export default ZoomableNormal;
 const styles = StyleSheet.create({
   mainConatainer: {
-    width: sizew,
-    height: sizew,
     overflow: "hidden",
+    // backgroundColor:'red'
   },
+  shadow:{
+    shadowColor: "grey",
+shadowOffset: {
+width: 0,
+height: -1,
+},
+shadowOpacity:  .5,
+shadowRadius: 1,
+elevation: 0
+  }
 
 });
