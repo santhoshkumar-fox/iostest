@@ -72,7 +72,7 @@ const Login = () => {
         
       }
     } catch (error) {
-      console.log("[ERR]", error.message);
+      // console.log("[ERR]", error.message);
     }
   };
 

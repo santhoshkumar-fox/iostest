@@ -18,7 +18,7 @@ const UrlConfigSheet = ({isLocal,setIsLocal}) => {
    }
    const passwordValidation = (password)=>{
     const regx = /\w{7,}\d{1,}/g
-    console.log(regx.test(password))
+    // console.log(regx.test(password))
    }
 
 

@@ -1,7 +1,7 @@
 import {StyleSheet,Text,View,Dimensions,TouchableOpacity,} from "react-native";
 import React, { useState } from "react";
 import Animated, { Layout, FadeOut, FadeIn,useSharedValue,useAnimatedStyle,withTiming,interpolate,Extrapolate,Extrapolation } from "react-native-reanimated";
-import { COLORS, SIZE } from "./../constants/theme";
+import { COLORS, SIZE } from "../constants/theme";
 import {Entypo} from "@expo/vector-icons"
 // in future use community useDimension for orientaion enhancement
 const SIZEWIDTH = SIZE.width * 0.24;
@@ -17,18 +17,18 @@ const dummyContentData = ["Referrals", "Consent Forms", "Doctor Letter"];
 // MC
 
 
-const SideBarRight = ({onPress,setShowLeftSideBard,showLeftSideBard,setIsShowThumbList}) => {
+const SideBarRight = ({onPress,setShowLeftSideBarLeftd,showLeftSideBarLeftd,setIsShowThumbList}) => {
   const [index, setIndex] = useState(null);
 
   const animationvalue = useSharedValue(0);
 
   const changeanimation = () => {
-    if (showLeftSideBard) {
+    if (showLeftSideBarLeftd) {
       animationvalue.value = withTiming(0);
     } else {
       animationvalue.value = withTiming(1);
     }
-    setShowLeftSideBard(!showLeftSideBard);
+    setShowLeftSideBarLeftd(!showLeftSideBarLeftd);
   };
 
   const animatedStyles = useAnimatedStyle(() => {

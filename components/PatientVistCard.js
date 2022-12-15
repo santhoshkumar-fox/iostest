@@ -67,14 +67,7 @@ const Card = ({ title, count, bgColor }) => {
 };
 
 export default PatientVistCard;
-const cardColor = {
-  ArrivedColor: "lightblue",
-  WaitingColor: "",
-  TestingColor: "",
-  ConsultingColor: "",
-  BillingColor: "",
-  Departed: "",
-};
+
 const styles = StyleSheet.create({
   maincontainer: {
     borderRadius:10,

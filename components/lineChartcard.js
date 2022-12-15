@@ -17,7 +17,7 @@ const LineChartcard = ({ data, width }) => {
   const currentDateString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate())}`
   const yesterdayString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate()-1)}`
   const TomorrowString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate()+1)}`
-  console.log(currentDateString);
+  // console.log(currentDateString);
   // const tomorrowDateString = `${today.getFullYear}-${today.getMonth+1}-${today.getDate}`
   return (
     <Box flex={2} rounded={"md"} bg="white" style={{paddingTop:5}}>
@@ -35,7 +35,7 @@ const LineChartcard = ({ data, width }) => {
         '2022-12-04': {dots: [massage, workout]}
       }}
   onDayPress={day => {
-    console.log('selected day', day);
+    // console.log('selected day', day);
     setCurrentDate(day);
     setIsMonth(false)
   }}
