@@ -4,7 +4,7 @@ import { Box, ScrollView } from "native-base";
 // import { LineChart } from "react-native-gifted-charts";
 import {Calendar} from "react-native-calendars"
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS } from "../constants";
+import { COLORS, SIZE } from "../constants";
 import Animated,{FadeIn,FadeOut} from "react-native-reanimated"
 const LineChartcard = ({ data, width }) => {
   const [ismonth,setIsMonth] = useState(true);
@@ -17,13 +17,13 @@ const LineChartcard = ({ data, width }) => {
   const currentDateString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate())}`
   const yesterdayString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate()-1)}`
   const TomorrowString = `${today.getFullYear()}-${today.getMonth()+1}-${(today.getDate()+1)}`
-  console.log(currentDateString);
+  // console.log(currentDateString);
   // const tomorrowDateString = `${today.getFullYear}-${today.getMonth+1}-${today.getDate}`
   return (
     <Box flex={2} rounded={"md"} bg="white" style={{paddingTop:5}}>
        {ismonth?<Calendar
       theme={{
-        textMonthFontSize:15,
+        textMonthFontSize:SIZE.h3,
         textMonthFontWeight:'600',
         monthTextColor:"black"
       }}
@@ -35,7 +35,7 @@ const LineChartcard = ({ data, width }) => {
         '2022-12-04': {dots: [massage, workout]}
       }}
   onDayPress={day => {
-    console.log('selected day', day);
+    // console.log('selected day', day);
     setCurrentDate(day);
     setIsMonth(false)
   }}
@@ -45,7 +45,7 @@ const LineChartcard = ({ data, width }) => {
   />:<Animated.View style={{height:310}}>
 
       <View style={{alignItems:"center",justifyContent:"center",paddingVertical:20}}> 
-        <Text style={{fontSize:15,color:"#2b2b2b",fontWeight:"600",}}>{`${currentDate?.day} ${monthArr[currentDate?.month-1]} ${ currentDate?.year} `}</Text>
+        <Text style={{fontSize:SIZE.h3,color:"#2b2b2b",fontWeight:"600",}}>{`${currentDate?.day} ${monthArr[currentDate?.month-1]} ${ currentDate?.year} `}</Text>
       </View>
       <ScrollView style={{height:300,paddingBottom:30}}
       showsVerticalScrollIndicator={false}

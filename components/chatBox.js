@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import { COLORS } from "../constants";
-import AudioPlayer from "./AudioPlayer";
+import AudioPlayer from "./audioPlayer";
 
 const ChatBox = () => {
   const refr = useRef(null);

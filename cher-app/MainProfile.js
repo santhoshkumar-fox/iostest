@@ -3,68 +3,46 @@ import { Ionicons, MaterialIcons, Entypo, Feather } from "@expo/vector-icons";
 import { SvgXml } from "react-native-svg";
 import { Box, Text, HStack, ScrollView } from "native-base";
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import {
-  View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-  TextInput,
-} from "react-native";
+import {View,Image,StyleSheet,TouchableOpacity,FlatList,TextInput,} from "react-native";
 import { responsiveWidth } from "react-native-responsive-dimensions";
 import { SketchCanvas } from "rn-sketch-save";
-import {
-  PatientInformationCard,
-  MeteDataCard,
-  Toolbar,
-  ZoomableNormal,
-  SideBar,
-  SideBarRight,
-  GoBack,
-} from "../components";
+import {PatientLableCard,PatientKeyInformation,Toolbar,ZoomableNormal,SideBarLeft,SideBarRight,GoBack,} from "../components";
 import {useToast} from "native-base"
+
+
 // ⚠️ recycle waring apper will chage in future
 import ChatBoxModel from "./../components/chatboxModel";
 import { dumyData, images, COLORS, SIZE } from "../constants";
-import DropDownPage from "../components/DropDownPage";
-import Animated, {
-  PageTransitionEvent,
-  FadeOut,
-  Layout,
-  SlideInDown,
-  SlideInRight,
-  SlideInLeft,
-  SlideInUp,
-  SlideOutDown,
-  FadeIn,
-  BounceIn,
-  SlideOutRight,
-} from "react-native-reanimated";
+import DropDownPage from "../components/dropDownPage";
+import Animated, {FadeOut,Layout,SlideInDown,SlideInRight,SlideInLeft,SlideInUp,SlideOutDown,FadeIn,} from "react-native-reanimated";
 
-const thumbSpacing = 10;
-const thumbImageSize = 60;
+const THUMB_SAPCING = 10;
+const THUMB_IMG_SIZE = 60;
 const MainProfile = () => {
-  const toastr = useToast();
 
+  // Toaster 🍞
+  const _useToast = useToast();
   const toast =  (title)=>{
-    toastr.show({
+    _useToast.show({
       description: title,
       backgroundColor:COLORS.secondaryColor,
       duration:2000,
     })
   }
+  // status 🗽
   const [currentSvg, setCurrentSvg] = useState([]);
   const [imageValue, setImageValue] = useState(4);
   const [isDraw, setIsDraw] = useState(true);
-  const canvaRef = useRef(null);
   const [isShowThumbList, setIsShowThumbList] = useState(false);
   const [isScalling, setIsScalling] = useState(false);
   const [scaleWidth, setScalWidth] = useState(70);
   const [isRightSliderBar, setIsRightSliderBar] = useState(false);
   const [isROModel, setIsROModel] = useState(false);
   const [ROChildImage, setROChildImage] = useState(0);
-  const [ismenuIndicator,setismenuIndicator]  = useState(false);
-  // save svgs
+  const [isMenuIndicator,setisMenuIndicator]  = useState(false);
+  // canva ref 🧑‍🚒
+  const canvaRef = useRef(null);
+  // save svgs initial value 
   const [indicatorValue, setIndicatorValue] = useState([1, 2, 3, 4]);
   const [savedFlatlistdata, setSavedFlatlistData] = useState([
     { imagevalue: 0, svgvalue: "" },
@@ -74,9 +52,11 @@ const MainProfile = () => {
     { imagevalue: 4, svgvalue: "" },
     { imagevalue: 5, svgvalue: "" },
   ]);
+
+  // funtions ⚱️
   const saveSvg = (value) => {
     if (value?.split("<path ").length <= 1) {
-      console.log("show some error for the changes not done");
+      // console.log("show some error for the changes not done");
       toast("No Change to Save");
     } else {
       let s_value = value;
@@ -95,7 +75,6 @@ const MainProfile = () => {
       canvaRef?.current?.reset();
     toast("saved!");
     }
-    
   };
 
   const TopChildSvg = () => {
@@ -107,12 +86,11 @@ const MainProfile = () => {
     });
     const svg = `
     <svg width="0" height="0">
-    <rect width="0" height="0" fill="white"/>
-    <g>
-    ${stringpath}
-    </g>
+     <rect width="0" height="0" fill="white"/>
+      <g>
+       ${stringpath}
+      </g>
     </svg>`;
-
     return <SvgXml xml={svg} width={"100%"} height={"100%"} />;
    }
   };
@@ -177,28 +155,16 @@ const MainProfile = () => {
     );
   };
 
-  const Menuindicatior = () => {
+  const MenuIndicatior = () => {
     return (
       <TouchableOpacity
-        style={[
-          {
-            width: 30,
-            height: 30,
-            backgroundColor: COLORS.secondaryColor15,
-            position: "absolute",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 10,
-            right: 50,
-            top: 15,
-          },
+        style={[styles.menuIndicatior
         ]}
         onPress={() => {
-          setismenuIndicator(true);
+          setisMenuIndicator(true);
         }}
       >
-       <Entypo name="menu" size={20} color={COLORS.secondaryColor60}/>
-        
+       <Entypo name="menu" size={20} color={COLORS.secondaryColor60}/> 
       </TouchableOpacity>
     );
   };
@@ -229,24 +195,16 @@ const MainProfile = () => {
           {!isScalling&&<View style={{}}>
             <ChatBoxModel />
           </View>}
-          {!isScalling &&<Menuindicatior/>}
-          {/* <TouchableOpacity style={{position:"absolute",width:40,height:40,bottom:0,alignItems:"center",justifyContent:"center"}}>
-            <Entypo name="menu" size={24} color={COLORS.secondaryColor}/>
-          </TouchableOpacity> */}
-
-          
+          {!isScalling &&<MenuIndicatior/>}          
           <FullScale />
-
-          {ismenuIndicator && 
-          <ItemMenuCard/>
-             }
+          {isMenuIndicator && 
+          <ItemMenuCard/>}
         </Animated.View>
       );
     },
-    [imageValue,ismenuIndicator,indicatorValue,isScalling]
+    [imageValue,isMenuIndicator,indicatorValue,isScalling]
   );
-
- const ItemMenuCard = useCallback(()=>{
+const ItemMenuCard = useCallback(()=>{
   const tosterMenu = useToast();
   const toastMenu =  (title)=>{
     tosterMenu.show({
@@ -255,7 +213,6 @@ const MainProfile = () => {
       duration:2000,
     })
   }
-
   return(
     <Animated.View exiting={FadeOut.delay(300)} style={{width: 574, height: 574 * 1.3,backgroundColor:"white",position:"absolute",bottom:0,left:0,padding:50}}>
 
@@ -296,13 +253,12 @@ const MainProfile = () => {
               </TouchableOpacity>
               <TouchableOpacity
             onPress={() => {
-              setismenuIndicator(false)
+              setisMenuIndicator(false)
             }}
             style={{
               alignItems: "center",
               justifyContent: "center",
               position: "absolute",
-              // backgroundColor:'red',
               padding:10,
               top: 10,
               right: 10,
@@ -312,9 +268,9 @@ const MainProfile = () => {
           </TouchableOpacity>
   </Animated.View>
   )
- },[ismenuIndicator,indicatorValue])
+ },[isMenuIndicator,indicatorValue])
 
-  const ChildconModel = ({ canvaRef }) => {
+  const ChildconModel = ( ) => {
     return (
       <Animated.View
         layout={Layout.duration(300)}
@@ -337,14 +293,7 @@ const MainProfile = () => {
   return (
     <View style={styles.root}>
       <Text
-        style={{
-          textAlign: "center",
-          color: "rgba(56, 55, 55, .8)",
-          fontSize: 20,
-          fontWeight: "800",
-          marginTop: 40,
-        }}
-      >
+        style={styles.headingText}>
         Wanda Morrison
       </Text>
       <View style={{ position: "absolute", top: 45, left: 20, zindex: 2 }}>
@@ -365,8 +314,8 @@ const MainProfile = () => {
         <Animated.View entering={SlideInUp}>
           <Box p={4} pt={4}>
             <HStack space={4} mt={4}>
-              <MeteDataCard />
-              <PatientInformationCard
+              <PatientKeyInformation />
+              <PatientLableCard
                 name={"Wanda Morrison"}
                 fileNumber={"DC545930"}
                 age={34}
@@ -415,6 +364,7 @@ const MainProfile = () => {
       <Box flex={1} style={{ flexDirection: "row", alignItems: "flex-start" }}>
         {/* chaneg the image,sketch,topchild,canva always in (540px,540*1.3) */}
         <Animated.View
+        layout={Layout.duration(100)}
           style={[
             { flex: 1, marginHorizontal: 20, marginTop: 20, borderRadius: 5 },
             isRightSliderBar && { marginLeft: SIZE.width / 2 - 572 / 2 },
@@ -441,8 +391,8 @@ const MainProfile = () => {
             <SideBarRight
               onPress={thumListShow}
               setIsShowThumbList={setIsShowThumbList}
-              setShowLeftSideBard={setIsRightSliderBar}
-              showLeftSideBard={isRightSliderBar}
+              setShowLeftSideBarLeftd={setIsRightSliderBar}
+              showLeftSideBarLeftd={isRightSliderBar}
             />
           </Animated.View>
         )}
@@ -496,7 +446,7 @@ const MainProfile = () => {
                 key={index}
                 rounded="sm"
                 style={{
-                  marginRight: thumbSpacing,
+                  marginRight: THUMB_SAPCING,
                   borderWidth: 1,
                   borderColor: active == index ? "#0073AE" : "transparent",
                 }}
@@ -513,8 +463,8 @@ const MainProfile = () => {
                   <Image
                     source={dumyData.imagevaluearr[item?.imagevalue]}
                     style={{
-                      width: thumbImageSize,
-                      height: thumbImageSize,
+                      width: THUMB_IMG_SIZE,
+                      height: THUMB_IMG_SIZE,
                       flex: 1,
                       borderRadius: 5,
                     }}
@@ -564,6 +514,9 @@ const MainProfile = () => {
             drawCallback={() => {
               canvaRef?.current?.isDrawToggle();
               setIsDraw(true);
+            }}
+            saveCallback={() => {
+              saveSvg(canvaRef?.current?.toSvg());
             }}
             isDraw={isDraw}
           />
@@ -622,7 +575,7 @@ const MainProfile = () => {
             entering={SlideInLeft.duration(500)}
             style={{ position: "absolute",top:78 }}
           >
-            <SideBar />
+            <SideBarLeft />
           </Animated.View>
         )}
     </View>
@@ -633,6 +586,13 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: "rgba(229, 241, 247, 0.5)",
+  },
+  headingText:{
+    textAlign: "center",
+    color: "rgba(56, 55, 55, .8)",
+    fontSize: SIZE.h2,
+    fontWeight: "800",
+    marginTop: 40,
   },
   btnStyle: {
     flexDirection: "row",
@@ -663,7 +623,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginBottom: 50,
   },
-
+  menuIndicatior:{
+    width: 30,
+    height: 30,
+    backgroundColor: COLORS.secondaryColor15,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    right: 50,
+    top: 15,  
+  },
   btnText: {
     color: "white",
   },

@@ -1,13 +1,13 @@
-import {StyleSheet,Text,View,Dimensions,TouchableOpacity,} from "react-native";
-import React, { useRef, useState } from "react";
+import {StyleSheet,Text,View,TouchableOpacity,} from "react-native";
+import React, {  useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 import { useEffect } from "react";
 import Animated, {useSharedValue,withTiming,useAnimatedStyle,interpolate,FadeInDown,Extrapolation,Layout,} from "react-native-reanimated";
 import { SIZE } from "../constants";
 
 
-const SIDEBAR_WIDTH = SIZE.width * 0.7;
-const SideBar = () => {
+const SideBarLeft_WIDTH = SIZE.width * 0.7;
+const SideBarLeft = () => {
   const dummyData = [
     "Medical History",
     "Ophthamalogy History",
@@ -18,7 +18,7 @@ const SideBar = () => {
     "General",
   ];
   const [index, setIndex] = useState();
-  const [showLeftSideBard, setShowLeftSideBar] = useState(false);
+  const [showLeftSideBarLeftd, setShowLeftSideBarLeft] = useState(false);
 
   useEffect(() => {
     changeanimation();
@@ -27,19 +27,19 @@ const SideBar = () => {
   const animationvalue = useSharedValue(0);
 
   const changeanimation = () => {
-    if (showLeftSideBard) {
+    if (showLeftSideBarLeftd) {
       animationvalue.value = withTiming(0);
     } else {
       animationvalue.value = withTiming(1);
     }
-    setShowLeftSideBar(!showLeftSideBard);
+    setShowLeftSideBarLeft(!showLeftSideBarLeftd);
   };
 
   const animatedStyles = useAnimatedStyle(() => {
     const translation = interpolate(
       animationvalue.value,
       [0, 1],
-      [0, -SIDEBAR_WIDTH * 1.01],
+      [0, -SideBarLeft_WIDTH * 1.01],
       { extrapolateRight: Extrapolation.CLAMP }
     );
 
@@ -58,7 +58,7 @@ const SideBar = () => {
   return (
     <View style={styles.mainContainer}>
       {/* side bar */}
-      <Animated.View style={[styles.sidebarcon, animatedStyles, styles.shadow]}>
+      <Animated.View style={[styles.SideBarLeftcon, animatedStyles, styles.shadow]}>
         {/* inner cards */}
         <Animated.View style={{ width: "100%" }}>
           {dummyData.map((e, _index) => {
@@ -94,7 +94,7 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default SideBarLeft;
 const SideCard = ({ title, cardIndex, index, setIndex }) => {
   const changevalue = () => {
     if (index === cardIndex) {
@@ -148,10 +148,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
-  sidebarcon: {
+  SideBarLeftcon: {
     position: "absolute",
     // bottom:(height*.5) -(height*.6/2),
-    width: SIDEBAR_WIDTH,
+    width: SideBarLeft_WIDTH,
     paddingHorizontal: 10,
     paddingVertical: 10,
     backgroundColor: "rgba(255, 255, 255, 1)",

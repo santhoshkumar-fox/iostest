@@ -1,22 +1,20 @@
-import ActionButton from "./ActionButton";
+import ActionButton from "./actionButton";
 import Header from "./header";
 import LineChartcard from "./lineChartcard";
 import MiniCard from "./miniCard";
-import PatientInformationCard from "./patientInformation";
+import PatientLableCard from "./patientLableCard";
 import FormLableCard from "./formLableCard";
-import MeteDataCard from "./meteDataCard";
+import PatientKeyInformation from "./patientKeyinformationcard";
 import GoBack from "./goback";
-import AgendaCalendar from "./AgendaCalendar";
 import Toolbar from "./Toolbar";
-import InstaZoomable from './InstaZoomable';
-import ZoomableNormal from './ZoombaleNormal';
-import BtnIcons from './BtnIcons';
-import SideBar from './SideBar';
-import SideBarRight from './SidebarRight';
-import ClinicDropDown from './ClinicDropDown';
-import UrlConfigSheet from './UrlConfigSheet';
+import ZoomableNormal from './zoombaleNormal';
+import BtnIcons from './btnIcons';
+import ClinicDropDown from './clinicDropDown';
+import UrlConfigSheet from './urlConfigSheet';
 import PatientVistCard from './PatientVistCard';
-import NoticeCrad from './NoticeCrad';
+import NoticeCrad from './noticeCrad';
+import SideBarLeft from './sideBarLeft';
+import SideBarRight from './sidebarRight';
 
 
 
@@ -26,19 +24,16 @@ export {
   ActionButton,
   LineChartcard,
   MiniCard,
-  PatientInformationCard,
+  PatientLableCard,
   FormLableCard,
-  MeteDataCard,
+  PatientKeyInformation,
   GoBack,
-  AgendaCalendar,
   Toolbar,
-  InstaZoomable,
-  ZoomableNormal,
-  SideBar,
   SideBarRight,
+  ZoomableNormal,
   ClinicDropDown,
   UrlConfigSheet,
   PatientVistCard,
   NoticeCrad,
-  
+  SideBarLeft
 };

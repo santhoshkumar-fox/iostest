@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import {Box, ScrollView} from "native-base"
-import { COLORS } from './../constants/theme';
+import { COLORS } from '../constants/theme';
 const NoticeCrad = () => {
   return (
     <Box shadow={2} style={styles.agendaCantainer}>
